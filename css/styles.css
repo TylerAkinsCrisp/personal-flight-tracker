@@ -1,0 +1,963 @@
+/* Track Tyler - Vietnam Adventure 2025 Styles */
+
+:root {
+    --primary-color: #007bff;
+    --primary-dark: #0056b3;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --dark-bg: #1a1a1a;
+    --dark-bg-secondary: #2d2d2d;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --shadow-primary: rgba(0, 123, 255, 0.3);
+    --transition-smooth: all 0.3s ease;
+}
+
+/* Base Styles */
+body {
+    background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-bg-secondary) 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navigation Enhancements */
+.navbar {
+    backdrop-filter: blur(10px);
+    background: rgba(33, 37, 41, 0.95) !important;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: var(--transition-smooth);
+}
+
+.nav-link:hover {
+    color: var(--primary-color) !important;
+    transform: translateY(-1px);
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.8), rgba(108, 117, 125, 0.8));
+    padding: 100px 0 80px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-section h1 {
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-section .lead {
+    font-size: 1.3rem;
+    opacity: 0.95;
+}
+
+/* Flight Cards */
+.flight-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.flight-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.flight-card:hover::before {
+    left: 100%;
+}
+
+.flight-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Add a subtle click indicator */
+.flight-card::after {
+    content: 'Click to track flight';
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.flight-card:hover::after {
+    opacity: 1;
+}
+
+.flight-card .card-body {
+    padding: 2rem;
+}
+
+/* Flight Status Banner */
+.flight-status {
+    position: relative;
+    width: calc(100% + 4rem);
+    padding: 12px 20px;
+    margin: -2rem -2rem 2rem -2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: var(--transition-smooth);
+}
+
+.flight-status::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.1) 10px,
+        rgba(255, 255, 255, 0.1) 20px
+    );
+    pointer-events: none;
+}
+
+.flight-status:hover {
+    transform: none;
+}
+
+.status-scheduled {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+}
+
+.status-boarding {
+    background: linear-gradient(135deg, var(--warning-color), #ff8c00);
+    color: #000;
+}
+
+.status-departed {
+    background: linear-gradient(135deg, var(--success-color), #20c997);
+    color: white;
+}
+
+.status-delayed {
+    background: linear-gradient(135deg, var(--danger-color), #c82333);
+    color: white;
+}
+
+/* Airport Codes */
+.airport-code {
+    font-family: 'Courier New', 'Monaco', monospace;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0.5rem;
+}
+
+.airport-name {
+    font-size: 0.9rem;
+    color: #adb5bd;
+    font-weight: 500;
+}
+
+/* Flight Numbers */
+.flight-number {
+    background: linear-gradient(45deg, var(--secondary-color), #495057);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-family: 'Courier New', 'Monaco', monospace;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Timeline Connector */
+.timeline-connector {
+    border-left: 3px dashed var(--primary-color);
+    margin: 20px auto;
+    height: 80px;
+    position: relative;
+    opacity: 0.7;
+    width: 3px;
+    display: block;
+}
+
+.timeline-connector::before {
+    content: '✈️';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--dark-bg);
+    padding: 8px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Live Status Section */
+.live-status-card {
+    background: linear-gradient(135deg, var(--glass-bg), rgba(0, 123, 255, 0.1));
+    backdrop-filter: blur(15px);
+    border: 2px solid var(--primary-color);
+    border-radius: 16px;
+}
+
+.status-loading {
+    animation: pulse 2s infinite;
+}
+
+.status-disabled {
+    /* No animation for disabled state */
+    opacity: 1;
+}
+
+.status-disabled .alert {
+    background: rgba(13, 202, 240, 0.1);
+    border: 1px solid rgba(13, 202, 240, 0.3);
+    border-radius: 12px;
+}
+
+.status-disabled .bi-shield-lock {
+    animation: none; /* No animation for shield icon */
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Spinning Animation for Refresh Button */
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Countdown styling */
+.countdown {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 0.75rem;
+    padding: 6px 10px;
+    border-radius: 12px;
+    transition: var(--transition-smooth);
+    display: inline-block;
+    width: auto;
+    min-width: 120px;
+    max-width: 160px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.countdown-far {
+    color: #6c757d;
+    background: rgba(108, 117, 125, 0.15);
+    border-color: rgba(108, 117, 125, 0.3);
+}
+
+.countdown-weeks {
+    color: #17a2b8;
+    background: rgba(23, 162, 184, 0.15);
+    border-color: rgba(23, 162, 184, 0.3);
+}
+
+.countdown-days {
+    color: var(--primary-color);
+    background: rgba(0, 123, 255, 0.15);
+    border-color: rgba(0, 123, 255, 0.3);
+}
+
+.countdown-tomorrow {
+    color: var(--warning-color);
+    background: rgba(255, 193, 7, 0.15);
+    border-color: rgba(255, 193, 7, 0.4);
+    animation: pulse-warning 2s infinite;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+}
+
+.countdown-hours {
+    color: #fd7e14;
+    background: rgba(253, 126, 20, 0.15);
+    border-color: rgba(253, 126, 20, 0.4);
+    animation: pulse-warning 1.5s infinite;
+    box-shadow: 0 0 10px rgba(253, 126, 20, 0.3);
+}
+
+.countdown-soon {
+    color: var(--danger-color);
+    background: rgba(220, 53, 69, 0.15);
+    border-color: rgba(220, 53, 69, 0.4);
+    animation: pulse-urgent 1s infinite;
+    box-shadow: 0 0 12px rgba(220, 53, 69, 0.4);
+}
+
+.countdown-imminent {
+    color: #fff;
+    background: var(--danger-color);
+    border-color: #fff;
+    animation: pulse-urgent 0.5s infinite;
+    font-weight: 700;
+    box-shadow: 0 0 15px rgba(220, 53, 69, 0.6);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.countdown-past {
+    color: var(--success-color);
+    background: rgba(40, 167, 69, 0.15);
+    border-color: rgba(40, 167, 69, 0.3);
+    text-decoration: none;
+}
+
+@keyframes pulse-warning {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes pulse-urgent {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.02); }
+}
+
+/* Main Countdown Section */
+.main-countdown-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.main-countdown-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="20" cy="80" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+    animation: float 20s ease-in-out infinite;
+}
+
+.main-countdown-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.main-countdown-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 35px 70px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.main-countdown-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.main-countdown-time {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: white;
+    margin: 1rem 0;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+.main-countdown-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.main-countdown-details {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    margin-top: 1rem;
+}
+
+.main-countdown-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Countdown states */
+.countdown-departure.main-countdown-card {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 159, 67, 0.2));
+}
+
+.countdown-arrival.main-countdown-card {
+    background: linear-gradient(135deg, rgba(72, 187, 120, 0.2), rgba(56, 178, 172, 0.2));
+}
+
+.countdown-return.main-countdown-card {
+    background: linear-gradient(135deg, rgba(130, 88, 159, 0.2), rgba(74, 144, 226, 0.2));
+}
+
+.countdown-completed.main-countdown-card {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 107, 107, 0.2));
+}
+
+/* Responsive main countdown */
+@media (max-width: 768px) {
+    .main-countdown-card {
+        padding: 2rem 1.5rem;
+        margin: 0 1rem;
+        border-radius: 20px;
+    }
+    
+    .main-countdown-time {
+        font-size: 2.8rem;
+        margin: 0.8rem 0;
+    }
+    
+    .main-countdown-title {
+        font-size: 1.4rem;
+    }
+    
+    .main-countdown-subtitle {
+        font-size: 1rem;
+    }
+    
+    .main-countdown-details {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-countdown-card {
+        padding: 1.5rem 1rem;
+        margin: 0 0.5rem;
+        border-radius: 16px;
+    }
+    
+    .main-countdown-time {
+        font-size: 2.2rem;
+        margin: 0.6rem 0;
+        word-break: break-all;
+    }
+    
+    .main-countdown-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .main-countdown-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .main-countdown-details {
+        font-size: 0.85rem;
+        margin-top: 0.8rem;
+    }
+    
+    .main-countdown-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+}
+
+/* Badges and Labels */
+.destination-badge {
+    background: linear-gradient(45deg, var(--success-color), #20c997);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(40, 167, 69, 0.3);
+}
+
+.home-badge {
+    background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 2px 6px var(--shadow-primary);
+}
+
+/* Flight Time Information */
+.flight-time {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #f8f9fa;
+}
+
+.flight-date {
+    font-size: 0.9rem;
+    color: #adb5bd;
+    font-weight: 500;
+}
+
+.flight-duration {
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Airline Information */
+.airline-name {
+    color: #adb5bd;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Section Headers */
+.section-header {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.section-header::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    border-radius: 2px;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(135deg, #212529, #343a40) !important;
+    border-top: 1px solid var(--glass-border);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 80px 0 50px;
+        margin-top: 20px;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+    
+    .hero-section .row.mt-5 {
+        margin-top: 2rem !important;
+    }
+    
+    .airport-code {
+        font-size: 1.5rem;
+    }
+    
+    .flight-card .card-body {
+        padding: 1.5rem;
+    }
+    
+    .flight-status {
+        width: calc(100% + 3rem);
+        margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+        font-size: 0.85rem;
+        padding: 10px 15px;
+    }
+    
+    .countdown {
+        font-size: 0.8rem;
+        padding: 5px 8px;
+        min-width: 100px;
+        max-width: 140px;
+        margin-top: 0.5rem;
+        display: inline-block;
+    }
+    
+    .timeline-connector {
+        height: 60px;
+        margin: 15px auto;
+    }
+    
+    .timeline-connector::before {
+        font-size: 1rem;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 576px) {
+    .flight-card .card-body {
+        padding: 1rem;
+    }
+    
+    .flight-status {
+        width: calc(100% + 2rem);
+        margin: -1rem -1rem 1rem -1rem;
+        font-size: 0.8rem;
+        padding: 8px 10px;
+    }
+    
+    .airport-code {
+        font-size: 1.3rem;
+    }
+    
+    .flight-number {
+        font-size: 0.9rem;
+        padding: 4px 8px;
+    }
+    
+    .countdown {
+        font-size: 0.75rem;
+        padding: 4px 6px;
+        min-width: 100px;
+        max-width: 120px;
+        margin-top: 0.5rem;
+        display: inline-block;
+    }
+    
+    /* Fix countdown centering on mobile */
+    .col-md-3 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .mt-2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .hero-section {
+        padding: 70px 0 35px;
+        margin-top: 10px;
+    }
+    
+    .hero-section h1 {
+        font-size: 1.6rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.1;
+        padding: 0 10px;
+    }
+    
+    .hero-section .row.mt-5 {
+        margin-top: 1.5rem !important;
+    }
+}
+
+/* Loading Animation */
+.loading-dots {
+    display: inline-block;
+}
+
+.loading-dots::after {
+    content: '';
+    animation: dots 2s infinite;
+}
+
+@keyframes dots {
+    0%, 20% { content: ''; }
+    40% { content: '.'; }
+    60% { content: '..'; }
+    80%, 100% { content: '...'; }
+}
+
+/* Smooth Scrolling Enhancement */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Simple Countdown Text (inside departure box) */
+.simple-countdown {
+    margin-top: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.simple-countdown h3 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.countdown-display {
+    font-family: 'Courier New', Monaco, monospace;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    animation: pulse-glow 2s ease-in-out infinite;
+    font-size: 1.3rem;
+}
+
+.simple-countdown p {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.simple-countdown small {
+    font-size: 0.75rem;
+}
+
+.simple-countdown-completed h3 {
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 1.1rem;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { 
+        opacity: 1; 
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.9; 
+        transform: scale(1.05);
+    }
+}
+
+/* Mobile optimization for countdown in departure box */
+@media (max-width: 768px) {
+    .countdown-display {
+        font-size: 1.1rem !important;
+    }
+    
+    .simple-countdown h3 {
+        font-size: 1rem;
+    }
+    
+    .simple-countdown p {
+        font-size: 0.8rem;
+    }
+    
+    .simple-countdown small {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .countdown-display {
+        font-size: 1rem !important;
+        word-break: break-all;
+    }
+    
+    .simple-countdown h3 {
+        font-size: 0.95rem;
+    }
+    
+    .simple-countdown p {
+        font-size: 0.75rem;
+    }
+    
+    .simple-countdown small {
+        font-size: 0.65rem;
+    }
+}
+
+/* Compact Countdown in Hero Section */
+.compact-countdown {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    transition: var(--transition-smooth);
+}
+
+.compact-countdown:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.compact-countdown-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.compact-countdown-time {
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    margin: 0.5rem 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    letter-spacing: -0.02em;
+    font-family: 'Courier New', Monaco, monospace;
+}
+
+.compact-countdown-details {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* Responsive compact countdown */
+@media (max-width: 768px) {
+    .compact-countdown {
+        padding: 0.8rem 1rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .compact-countdown-title {
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .compact-countdown-time {
+        font-size: 1.4rem;
+        margin: 0.3rem 0;
+    }
+    
+    .compact-countdown-details {
+        font-size: 0.75rem;
+        margin-top: 0.3rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .compact-countdown {
+        padding: 0.6rem 0.8rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.8rem;
+        border-radius: 12px;
+    }
+    
+    .compact-countdown-title {
+        font-size: 0.9rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .compact-countdown-time {
+        font-size: 1.2rem;
+        margin: 0.2rem 0;
+        word-break: break-all;
+        line-height: 1.1;
+    }
+    
+    .compact-countdown-details {
+        font-size: 0.7rem;
+        margin-top: 0.2rem;
+        line-height: 1.2;
+    }
+}
+
+/* Countdown phase styles */
+.countdown-departure {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 159, 67, 0.2));
+    border-color: rgba(255, 107, 107, 0.4);
+}
+
+.countdown-arrival {
+    background: linear-gradient(135deg, rgba(72, 187, 120, 0.2), rgba(56, 178, 172, 0.2));
+    border-color: rgba(72, 187, 120, 0.4);
+}
+
+.countdown-return {
+    background: linear-gradient(135deg, rgba(130, 88, 159, 0.2), rgba(74, 144, 226, 0.2));
+    border-color: rgba(130, 88, 159, 0.4);
+}
+
+.countdown-homecoming {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 107, 107, 0.2));
+    border-color: rgba(255, 193, 7, 0.4);
+}
+
+.countdown-completed {
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.3), rgba(32, 201, 151, 0.3));
+    border-color: rgba(40, 167, 69, 0.5);
+    animation: celebration-glow 3s ease-in-out infinite;
+}
+
+@keyframes celebration-glow {
+    0%, 100% { 
+        box-shadow: 0 0 15px rgba(40, 167, 69, 0.3);
+    }
+    50% { 
+        box-shadow: 0 0 25px rgba(40, 167, 69, 0.6), 0 0 35px rgba(32, 201, 151, 0.4);
+    }
+} 

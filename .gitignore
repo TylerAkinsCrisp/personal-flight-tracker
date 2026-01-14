@@ -1,0 +1,32 @@
+# Environment and secrets - NEVER COMMIT
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+
+# IDE and OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+*.old
+
+# PHP
+vendor/
+composer.lock
+
+# Security - never commit these if they exist
+*.pem
+*.key
+*.crt
+*.p12
