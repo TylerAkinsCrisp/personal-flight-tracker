@@ -76,7 +76,7 @@ $siteName = defined('SITE_NAME') ? SITE_NAME : 'Flight Tracker';
 
                                 foreach ($statements as $statement) {
                                     if (empty(trim($statement))) continue;
-                                    
+
                                     try {
                                         $pdo->exec($statement);
                                         if (preg_match('/CREATE\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?`?(\w+)`?/i', $statement, $matches)) {
