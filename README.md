@@ -186,6 +186,37 @@ Returns current and past trips.
 3. Run `setup/install.php` to create tables
 4. Access via local server
 
+### Running Tests
+
+Install test dependencies:
+
+```bash
+composer install
+```
+
+Run all tests:
+
+```bash
+composer test
+```
+
+Run only unit tests:
+
+```bash
+composer test:unit
+```
+
+Run integration tests (requires isolated test database; command validates env vars before running):
+
+```bash
+TEST_DB_ENABLED=1 \
+TEST_DB_HOST=localhost \
+TEST_DB_NAME=your_test_database \
+TEST_DB_USER=your_test_user \
+TEST_DB_PASS=your_test_password \
+composer test:integration
+```
+
 ### Pre-commit Check
 
 Run the security check script before committing:

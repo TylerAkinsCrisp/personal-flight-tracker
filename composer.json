@@ -1,0 +1,13 @@
+{
+    "name": "tylerakinsdotdev/flight-tracker",
+    "description": "Flight tracking site test tooling",
+    "type": "project",
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test:unit": "vendor/bin/phpunit --testsuite Unit",
+        "test:integration": "bash scripts/test-integration.sh"
+    }
+}

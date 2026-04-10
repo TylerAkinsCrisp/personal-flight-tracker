@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    bootstrap="tests/bootstrap.php"
+    colors="true"
+    beStrictAboutTestsThatDoNotTestAnything="true"
+    failOnWarning="true"
+>
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Integration">
+            <directory>tests/Integration</directory>
+        </testsuite>
+    </testsuites>
+
+    <php>
+        <env name="APP_ENV" value="test"/>
+        <env name="SESSION_TIMEOUT" value="3600"/>
+        <env name="API_RATE_LIMIT" value="1000"/>
+        <env name="LOGIN_MAX_ATTEMPTS" value="5"/>
+        <env name="LOGIN_LOCKOUT_MINUTES" value="15"/>
+    </php>
+</phpunit>
