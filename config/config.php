@@ -66,10 +66,7 @@ define('INCLUDES_PATH', BASE_PATH . '/includes');
 
 // Tracking provider whitelist
 define('ALLOWED_TRACKING_PROVIDERS', [
-    'flightaware' => 'flightaware.com',
-    'radarbox' => 'airnavradar.com',
-    'flightradar24' => 'flightradar24.com',
-    'adsbexchange' => 'globe.adsbexchange.com'
+    'flightaware' => 'flightaware.com'
 ]);
 
 // Timezone options for forms

@@ -603,31 +603,6 @@ function formatDuration($minutes) {
 }
 
 /**
- * Generate RadarBox iframe HTML
- */
-function renderRadarBoxEmbed($radarboxId, $width = '100%', $height = 400) {
-    if (empty($radarboxId)) {
-        return '';
-    }
-
-    $radarboxId = preg_replace('/[^0-9]/', '', $radarboxId);
-
-    return sprintf(
-        '<div class="radarbox-embed mb-3">
-            <iframe src="https://www.airnavradar.com/?widget=1&z=7&fid=%s"
-                    width="%s" height="%d"
-                    frameborder="0" scrolling="no"
-                    marginheight="0" marginwidth="0"
-                    loading="lazy"
-                    title="Live Flight Tracking"></iframe>
-        </div>',
-        e($radarboxId),
-        $width,
-        $height
-    );
-}
-
-/**
  * Generate FlightAware tracking button
  */
 function renderTrackLiveButton($flightawareUrl, $flightNumber = '') {

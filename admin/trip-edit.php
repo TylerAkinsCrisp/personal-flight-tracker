@@ -306,23 +306,17 @@ $pageTitle = ($isEdit ? 'Edit' : 'New') . " Trip - $siteName";
             </div>
 
             <div class="row g-2">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label class="form-label small">Flight Number <span class="text-danger">*</span></label>
                     <input type="text" class="form-control form-control-sm"
                            name="segments[{{DIRECTION}}][{{INDEX}}][flight_number]" required
                            placeholder="AA 4046">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label class="form-label small">Airline Name</label>
                     <input type="text" class="form-control form-control-sm"
                            name="segments[{{DIRECTION}}][{{INDEX}}][airline_name]"
                            placeholder="American Airlines">
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label small">RadarBox ID</label>
-                    <input type="text" class="form-control form-control-sm"
-                           name="segments[{{DIRECTION}}][{{INDEX}}][radarbox_id]"
-                           placeholder="e.g., 2738100616">
                 </div>
             </div>
 
@@ -405,7 +399,6 @@ function renderSegmentForm($direction, $index, $segment = []) {
         'scheduled_arrival' => '',
         'departure_timezone' => 'America/Chicago',
         'arrival_timezone' => 'America/Chicago',
-        'radarbox_id' => '',
         'flightaware_url' => '',
         'sort_order' => $index
     ];
@@ -445,26 +438,19 @@ function renderSegmentForm($direction, $index, $segment = []) {
         </div>
 
         <div class="row g-2">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label class="form-label small">Flight Number <span class="text-danger">*</span></label>
                 <input type="text" class="form-control form-control-sm"
                        name="segments[<?php echo $direction; ?>][<?php echo $index; ?>][flight_number]" required
                        value="<?php echo e($segment['flight_number']); ?>"
                        placeholder="AA 4046">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label class="form-label small">Airline Name</label>
                 <input type="text" class="form-control form-control-sm"
                        name="segments[<?php echo $direction; ?>][<?php echo $index; ?>][airline_name]"
                        value="<?php echo e($segment['airline_name']); ?>"
                        placeholder="American Airlines">
-            </div>
-            <div class="col-md-4">
-                <label class="form-label small">RadarBox ID</label>
-                <input type="text" class="form-control form-control-sm"
-                       name="segments[<?php echo $direction; ?>][<?php echo $index; ?>][radarbox_id]"
-                       value="<?php echo e($segment['radarbox_id']); ?>"
-                       placeholder="e.g., 2738100616">
             </div>
         </div>
 

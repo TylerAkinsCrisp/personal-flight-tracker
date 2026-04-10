@@ -37,7 +37,6 @@ CREATE TABLE IF NOT EXISTS flight_segments (
     scheduled_arrival DATETIME NOT NULL,
     departure_timezone VARCHAR(50) NOT NULL DEFAULT 'America/Chicago',
     arrival_timezone VARCHAR(50) NOT NULL DEFAULT 'America/Chicago',
-    radarbox_id VARCHAR(50) DEFAULT NULL,
     flightaware_url VARCHAR(500) DEFAULT NULL,
     sort_order INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -46,6 +45,9 @@ CREATE TABLE IF NOT EXISTS flight_segments (
     INDEX idx_direction (direction_id),
     INDEX idx_departure (scheduled_departure)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Migration note for existing databases:
+-- ALTER TABLE flight_segments DROP COLUMN radarbox_id;
 
 CREATE TABLE IF NOT EXISTS login_attempts (
     id INT AUTO_INCREMENT PRIMARY KEY,

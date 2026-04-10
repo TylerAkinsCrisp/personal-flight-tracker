@@ -108,6 +108,11 @@ function formatTripForApi($trip) {
 
             if (!empty($direction['segments'])) {
                 foreach ($direction['segments'] as $segment) {
+                    $trackingUrl = $segment['flightaware_url'];
+                    if (empty($trackingUrl) && !empty($segment['flight_number'])) {
+                        $trackingUrl = 'https://flightaware.com/live/flight/' . str_replace(' ', '', $segment['flight_number']);
+                    }
+
                     $formattedDir['segments'][] = [
                         'id' => (int) $segment['id'],
                         'flight_number' => $segment['flight_number'],
@@ -121,9 +126,9 @@ function formatTripForApi($trip) {
                         'departure_timezone' => $segment['departure_timezone'],
                         'arrival_timezone' => $segment['arrival_timezone'],
                         'duration_minutes' => calculateDuration($segment['scheduled_departure'], $segment['scheduled_arrival']),
-                        'radarbox_id' => $segment['radarbox_id'],
                         'flightaware_url' => $segment['flightaware_url'],
-                        'has_live_tracking' => !empty($segment['radarbox_id'])
+                        'tracking_url' => $trackingUrl,
+                        'has_tracking_link' => !empty($trackingUrl)
                     ];
                 }
             }

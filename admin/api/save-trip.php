@@ -123,7 +123,6 @@ try {
             $scheduledArrival = trim($segmentData['scheduled_arrival'] ?? '');
             $departureTimezone = trim($segmentData['departure_timezone'] ?? 'America/Chicago');
             $arrivalTimezone = trim($segmentData['arrival_timezone'] ?? 'America/Chicago');
-            $radarboxId = trim($segmentData['radarbox_id'] ?? '');
             $flightawareUrl = trim($segmentData['flightaware_url'] ?? '');
             $sortOrder = (int) ($segmentData['sort_order'] ?? $index);
 
@@ -141,20 +140,17 @@ try {
                 }
             }
 
-            // Sanitize RadarBox ID (numbers only)
-            $radarboxId = preg_replace('/[^0-9]/', '', $radarboxId);
-
             // Insert segment
             $segmentId = dbInsert(
                 "INSERT INTO flight_segments
                  (direction_id, flight_number, airline_name, departure_airport, arrival_airport,
                   scheduled_departure, scheduled_arrival, departure_timezone, arrival_timezone,
-                  radarbox_id, flightaware_url, sort_order)
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                  flightaware_url, sort_order)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 [
                     $directionId, $flightNumber, $airlineName, $departureAirport, $arrivalAirport,
                     $scheduledDeparture, $scheduledArrival, $departureTimezone, $arrivalTimezone,
-                    $radarboxId ?: null, $flightawareUrl ?: null, $sortOrder
+                    $flightawareUrl ?: null, $sortOrder
                 ]
             );
 

@@ -228,11 +228,6 @@ $pageTitle = "Trip Admin - $siteName";
                                                                 <?php echo e($segment['departure_airport']); ?> → <?php echo e($segment['arrival_airport']); ?>
                                                             </span>
                                                         </div>
-                                                        <?php if (!empty($segment['radarbox_id'])): ?>
-                                                            <span class="badge bg-success" title="RadarBox embed available">
-                                                                <i class="bi bi-broadcast"></i>
-                                                            </span>
-                                                        <?php endif; ?>
                                                     </div>
                                                     <small class="text-muted">
                                                         <?php echo formatDateTime($segment['scheduled_departure'], $segment['departure_timezone'], 'M j, g:i A'); ?>

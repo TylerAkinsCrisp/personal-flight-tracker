@@ -151,20 +151,6 @@ if ($currentTrip) {
             font-size: 0.9rem;
         }
 
-        .radarbox-embed {
-            background: #1a1a2e;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-top: 1rem;
-        }
-
-        .radarbox-embed iframe {
-            display: block;
-            width: 100%;
-            height: 350px;
-            border: none;
-        }
-
         .track-live-btn {
             background: var(--tt-gradient);
             border: none;
@@ -215,7 +201,6 @@ if ($currentTrip) {
             .hero-title { font-size: 1.75rem; }
             .airport-code { font-size: 1.5rem; }
             .trip-stats { gap: 1rem; }
-            .radarbox-embed iframe { height: 300px; }
         }
     </style>
 </head>
@@ -297,7 +282,7 @@ if ($currentTrip) {
                                             <div class="flight-date">
                                                 <?php echo formatDate($segment['scheduled_departure'], $segment['departure_timezone']); ?>
                                             </div>
-                                            <div class="countdown mt-1" data-countdown="<?php echo e($segment['scheduled_departure']); ?>" data-tz="<?php echo e($segment['departure_timezone']); ?>"></div>
+                                            <div class="countdown mt-1" data-countdown="<?php echo e($segment['scheduled_departure']); ?>"></div>
                                         </div>
 
                                         <div class="col-2 col-md-4 text-center">
@@ -317,22 +302,13 @@ if ($currentTrip) {
                                         </div>
                                     </div>
 
-                                    <!-- RadarBox Embed or Track Live Button -->
                                     <?php
                                     // Only show tracking on the day of the flight or later
                                     $flightDate = date('Y-m-d', strtotime($segment['scheduled_departure']));
                                     $today = date('Y-m-d');
                                     $showTracking = ($today >= $flightDate);
                                     ?>
-                                    <?php if (!empty($segment['radarbox_id']) && $showTracking): ?>
-                                        <div class="radarbox-embed mt-3">
-                                            <iframe
-                                                src="https://www.airnavradar.com/?widget=1&z=7&fid=<?php echo e($segment['radarbox_id']); ?>"
-                                                loading="lazy"
-                                                title="Live Flight Tracking for <?php echo e($segment['flight_number']); ?>">
-                                            </iframe>
-                                        </div>
-                                    <?php elseif ($showTracking): ?>
+                                    <?php if ($showTracking): ?>
                                         <div class="text-center mt-3">
                                             <?php
                                             $trackUrl = $segment['flightaware_url'];

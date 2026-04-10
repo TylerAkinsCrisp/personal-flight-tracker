@@ -1,12 +1,11 @@
 # Flight Tracker
 
-A personal flight tracking website for sharing trip information with family. Features live flight tracking via RadarBox embeds and FlightAware integration.
+A personal flight tracking website for sharing trip information with family using clickable FlightAware tracking links.
 
 ## Features
 
 - **Public Site**: Shows current trip with departure and return flight segments
-- **Live Tracking**: RadarBox iframe embeds for real-time flight tracking
-- **FlightAware Fallback**: "Track Live" buttons when RadarBox ID not available
+- **Live Tracking Links**: "Track Live on FlightAware" button for each flight segment
 - **Admin Panel**: Full CRUD for trips and flight segments
 - **FlightAware URL Parser**: Paste a FlightAware URL to auto-populate flight details
 - **Mobile Friendly**: Responsive Bootstrap 5 dark theme
@@ -66,8 +65,6 @@ Go to `https://yourdomain.com/admin/` and enter your secret code.
 │   ├── database.php        # PDO database wrapper
 │   └── security.php        # CSRF, session, rate limiting helpers
 ├── includes/
-│   ├── header.php          # Common HTML header
-│   ├── footer.php          # Common HTML footer
 │   └── functions.php       # Utility functions
 ├── admin/
 │   ├── index.php           # Admin dashboard
@@ -78,8 +75,7 @@ Go to `https://yourdomain.com/admin/` and enter your secret code.
 ├── api/
 │   └── trips.php           # Public trips API
 ├── js/
-│   ├── admin.js            # Admin panel JavaScript
-│   └── flight-tracker.js   # Public site JavaScript
+│   └── admin.js            # Admin panel JavaScript
 ├── setup/
 │   ├── schema.sql          # Database schema
 │   └── install.php         # One-time installer (DELETE AFTER USE)
@@ -127,18 +123,12 @@ The parser extracts:
 - Departure/arrival airports (XNA, DFW)
 - Date and scheduled departure time (converted to local timezone)
 
-### Adding RadarBox Live Tracking
+### Track Live Links
 
-To enable inline live tracking:
+The public page shows a "Track Live on FlightAware" button for each segment on the day of departure or later.
 
-1. On the day of the flight, go to [RadarBox](https://www.radarbox.com/)
-2. Search for your flight
-3. Get the flight ID from the URL (the `fid` parameter)
-   - Example: `https://www.airnavradar.com/?widget=1&z=7&fid=2738100616`
-   - The RadarBox ID is: `2738100616`
-4. Enter this ID in the "RadarBox ID" field in the admin panel
-
-**Note**: RadarBox IDs are only available for active/recent flights. Enter them the day of travel.
+- If a segment has a saved `flightaware_url`, that URL is used.
+- If not, a fallback URL is built from the segment's `flight_number`.
 
 ## Security Features
 
@@ -159,7 +149,6 @@ All admin forms include CSRF tokens validated on submission.
 CSP header restricts resources to:
 - Self
 - Bootstrap CDN (cdn.jsdelivr.net)
-- RadarBox iframes (airnavradar.com)
 
 ## API
 
@@ -182,11 +171,6 @@ Returns current and past trips.
 - Check `.htaccess` is uploaded correctly
 - Verify mod_rewrite is enabled
 - Check file permissions (644 for files, 755 for directories)
-
-### RadarBox Embed Not Showing
-- Verify the RadarBox ID is correct
-- Check browser console for CSP errors
-- Ensure HTTPS is working (mixed content issues)
 
 ### FlightAware Parser Not Working
 - Ensure URL is from flightaware.com
